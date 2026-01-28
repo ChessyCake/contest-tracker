@@ -1,15 +1,31 @@
 /*eslint-disable no-unused-vars*/
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import getContestDetails from "./api/codeforces";
-function HomePage({children}){
+import Card from "./Card";
+function HomePage(){
 
-    // const [data, getData] = useEffect([]);
+    const [data, setData] = useState([]);
+
+    useEffect( ()=>{
+        async function load() {
+             const contest = await getContestDetails();
+             setData(contest);
+        }
+
+        load();
+    }, [])
     
    return( 
-   <div className="flex justify-center items-center min-h-screen">
-            {children}
-            <div className="bg-amber-200"> <h1> </h1></div>
+   <div className="flex flex-wrap justify-center items-center gap-4">
+        {data.map( d => (
+            <Card key={d.id} contest = {d} />
+        ))}
+
+        <div className="footer bottom-0 bg-black w-screen text-white flex justify-center items-end text-7xl">
+              <h3 className="mb-5"> CONTEST TRACKER</h3>
+        </div>
     </div>
+
     )
 }
 

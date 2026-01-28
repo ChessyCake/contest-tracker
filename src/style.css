@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap');
 @import "tailwindcss";
 
 .card{
@@ -5,7 +6,10 @@
     width: 300px;
 }
 
-
+.footer{
+    font-family: "Barriecito", system-ui;
+    height: 150px;
+}
 
 
 
